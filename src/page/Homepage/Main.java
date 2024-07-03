@@ -17,6 +17,9 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
+        initComponents();
+        init();
+
         try {
             // set system L&F
             UIManager.setLookAndFeel(
@@ -24,8 +27,6 @@ public class Main extends javax.swing.JFrame {
         } catch (Exception e) {
 
         }
-        initComponents();
-        init();
     }
 
     private void init() {

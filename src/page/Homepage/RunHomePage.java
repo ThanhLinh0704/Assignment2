@@ -9,11 +9,10 @@ package page.Homepage;
  * @author trunk
  */
 public class RunHomePage {
+
     public static void main(String[] args) {
         Main main = new Main();
         main.setVisible(true);
         main.pack();
-//        new Main().setVisible(true);
-        
     }
 }
