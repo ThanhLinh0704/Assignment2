@@ -24,7 +24,7 @@ public class DBConnection {
 //            dataSource.setDatabaseName("user");
 
         try {
-            String url = "jdbc:mysql://localhost:3306/css2csd";
+            String url = "jdbc:mysql://localhost:3306/ass2csd";
             String username = "root";
             String passwords = "";
             c = DriverManager.getConnection(url, username, passwords);
