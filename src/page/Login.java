@@ -205,7 +205,7 @@ public class Login extends javax.swing.JFrame {
             try {
                 //DBConnection.addUser();
                 Connection connection = DBConnection.getConnection();
-                String sql = "SELECT * FROM user WHERE userName = ? AND password = ?";
+                String sql = "SELECT * FROM users WHERE userName = ? AND password = ?";
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, userName);
                 preparedStatement.setString(2, password);
