@@ -1,25 +1,16 @@
 package page;
 
 import Until.Encoding;
-import Until.Validation;
-import database.DBConnection;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
 import page.Homepage.Main;
 
 public class Login extends javax.swing.JFrame {
 
-    
     private Encoding encoding = new Encoding();
-    
+
     public Login() {
         initComponents();
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -195,35 +186,35 @@ public class Login extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
 
-        
-        String userName = tfUserName.getText();
-        String password = String.valueOf(tfPassword.getPassword());
-        password = encoding.toSHA1(password);
-
-        Validation validation = new Validation();
-        if (validation.checkInputLogin(userName, password)) {
-            try {
-                //DBConnection.addUser();
-                Connection connection = DBConnection.getConnection();
-                String sql = "SELECT * FROM user WHERE userName = ? AND password = ?";
-                PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                preparedStatement.setString(1, userName);
-                preparedStatement.setString(2, password);
-                ResultSet rs = preparedStatement.executeQuery();
-                if (rs.next()) {
-                    dispose();
-                    Main homePage = new Main();
-                    homePage.show();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Invalid UserName or Password.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        }
+        Main homePage = new Main();
+        homePage.show();
+//        String userName = tfUserName.getText();
+//        String password = String.valueOf(tfPassword.getPassword());
+//        password = encoding.toSHA1(password);
+//
+//        Validation validation = new Validation();
+//        if (validation.checkInputLogin(userName, password)) {
+//            try {
+//                //DBConnection.addUser();
+//                Connection connection = DBConnection.getConnection();
+//                String sql = "SELECT * FROM user WHERE userName = ? AND password = ?";
+//                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//                preparedStatement.setString(1, userName);
+//                preparedStatement.setString(2, password);
+//                ResultSet rs = preparedStatement.executeQuery();
+//                if (rs.next()) {
+//                    dispose();
+//                    Main homePage = new Main();
+//                    homePage.show();
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "Invalid UserName or Password.", "Error", JOptionPane.ERROR_MESSAGE);
+//                }
+//            } catch (SQLException ex) {
+//                ex.printStackTrace();
+//            }
+//        }
 
     }//GEN-LAST:event_btnLoginActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Left;
