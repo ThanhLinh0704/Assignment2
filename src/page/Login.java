@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import page.Homepage.Main;
 
 public class Login extends javax.swing.JFrame {
 
@@ -211,7 +212,7 @@ public class Login extends javax.swing.JFrame {
                 ResultSet rs = preparedStatement.executeQuery();
                 if (rs.next()) {
                     dispose();
-                    HomePage homePage = new HomePage();
+                    Main homePage = new Main();
                     homePage.show();
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid UserName or Password.", "Error", JOptionPane.ERROR_MESSAGE);
