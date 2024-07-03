@@ -5,7 +5,7 @@
 package page.Homepage;
 
 import java.awt.FlowLayout;
-
+import javax.swing.UIManager;
 
 /**
  *
@@ -17,12 +17,19 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
+        try {
+            // set system L&F
+            UIManager.setLookAndFeel(
+                    UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+
+        }
         initComponents();
         init();
     }
-    
-    private void init(){
-        this.setLayout(new FlowLayout());       
+
+    private void init() {
+        this.setLayout(new FlowLayout());
         this.add(new Menu_Left());
         this.add(new Chat());
         this.add(new Menu_Right());
@@ -63,7 +70,7 @@ public class Main extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
