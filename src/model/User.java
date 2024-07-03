@@ -17,8 +17,10 @@ public class User {
     private int gender;
     private String email;
     private String address;
+    private String region;
+    private String dayofBirth;
 
-    public User(int iduser, String useName, String password, String firstName, String lastName, int gender, String email, String address) {
+    public User(int iduser, String useName, String password, String firstName, String lastName, int gender, String email, String address, String region, String dayofBirth) {
         this.iduser = iduser;
         this.useName = useName;
         this.password = password;
@@ -27,6 +29,9 @@ public class User {
         this.gender = gender;
         this.email = email;
         this.address = address;
+        this.region = region;
+        this.dayofBirth= dayofBirth;
+   
     }
 
     public User() {
@@ -96,6 +101,24 @@ public class User {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getDayofBirth() {
+        return dayofBirth;
+    }
+
+    public void setDayofBirth(String dayofBirth) {
+        this.dayofBirth = dayofBirth;
+    }
+    
+    
     
     
     

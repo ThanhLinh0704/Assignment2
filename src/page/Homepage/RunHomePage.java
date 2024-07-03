@@ -11,7 +11,8 @@ package page.Homepage;
 public class RunHomePage {
 
     public static void main(String[] args) {
-
-        new Main().setVisible(true);
+        Main main = new Main();
+        main.setVisible(true);
+        main.pack();
     }
 }
