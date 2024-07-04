@@ -4,6 +4,7 @@
  */
 package Until;
 
+import dao.UserDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
@@ -31,7 +32,7 @@ public class Validation extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Confirm Password does not match", "Try again", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setLenient(false); // Ensure strict date parsing
         try {
@@ -45,13 +46,21 @@ public class Validation extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Required to Enter Correct Format: dd/MM/yyyy", "Try again", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        
+
         String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
         if (!Pattern.matches(regex, email)) {
             JOptionPane.showMessageDialog(this, "Invalid email format. Please enter a valid email.", "Try again", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        
+
+        UserDAO userDAO = new UserDAO();
+        boolean userExists = userDAO.isUsernameExists(userName);
+
+        if (userExists) {
+            JOptionPane.showMessageDialog(this, "Username already exists. Please choose another one.", "Try again", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
         return true;
     }
 

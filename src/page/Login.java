@@ -2,12 +2,14 @@ package page;
 
 import Until.Encoding;
 import Until.Validation;
+import dao.UserDAO;
 import database.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import model.Session;
 import page.Homepage.Main;
 
 public class Login extends javax.swing.JFrame {
@@ -201,15 +203,17 @@ public class Login extends javax.swing.JFrame {
             try {
                 //DBConnection.addUser();
                 Connection connection = DBConnection.getConnection();
-                String sql = "SELECT * FROM users WHERE userName = ? AND password = ?";
+                String sql = "SELECT userID FROM users WHERE userName = ? AND password = ?";
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, userName);
                 preparedStatement.setString(2, password);
                 ResultSet rs = preparedStatement.executeQuery();
                 if (rs.next()) {
+                    Session.setUserID(rs.getInt("userID"));
                     dispose();
                     Main homePage = new Main();
                     homePage.show();
+                    System.out.println("Current logged in user ID: " + Session.getUserID());
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid UserName or Password.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -218,7 +222,8 @@ public class Login extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnLoginActionPerformed
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Left;
     private javax.swing.JPanel Right;
