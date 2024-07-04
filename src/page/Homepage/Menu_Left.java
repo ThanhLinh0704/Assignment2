@@ -78,9 +78,8 @@ public class Menu_Left extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         SearchFriend searchFriend = new SearchFriend();
         searchFriend.setVisible(true);
         searchFriend.pack();
