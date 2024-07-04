@@ -4,23 +4,22 @@
  */
 package page.Homepage;
 
-import GraphBase.UserVertex;
-import components.Item_Person;
-import dao.GraphOfConnectionData;
-import java.util.Map;
-import model.Session;
+import components.Item_AddPerson;
+import dao.UserDAO;
+import java.util.List;
+import model.User;
 import net.miginfocom.swing.MigLayout;
 
 /**
  *
  * @author trunk
  */
-public class Menu_Left extends javax.swing.JPanel {
+public class Search extends javax.swing.JPanel {
 
     /**
      * Creates new form RightPanel
      */
-    public Menu_Left() {
+    public Search() {
         initComponents();
         init();
     }
@@ -29,19 +28,15 @@ public class Menu_Left extends javax.swing.JPanel {
         listPerson.setLayout(new MigLayout());
         showPeople();
     }
-
+    
+    UserDAO userDAO = new UserDAO();
+    
     private void showPeople() {
-        int userId = Session.getUserID();
-        GraphOfConnectionData graphOfConnectionData = new GraphOfConnectionData();
-
-        UserVertex user = graphOfConnectionData.graph.getUser(userId);
-
-        for (Map.Entry<UserVertex, Integer> entry : user.adjList.entrySet()) {
-            String userName = entry.getKey().firstName + " " + entry.getKey().lastName;
-            int id = entry.getKey().id;
-            listPerson.add(new Item_Person(userName, id), "wrap");
-        }
+    List<User> users = userDAO.selectAll(); // Call selectAll() once and store the result
+    for (int i = 0; i < users.size(); i++) {
+        listPerson.add(new Item_AddPerson(users.get(i).getUseName(), i), "wrap");
     }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,11 +51,8 @@ public class Menu_Left extends javax.swing.JPanel {
         listPerson = new javax.swing.JLayeredPane();
 
         setBackground(new java.awt.Color(0, 0, 0));
-        setForeground(new java.awt.Color(0, 0, 0));
         setMaximumSize(new java.awt.Dimension(236, 694));
         setMinimumSize(new java.awt.Dimension(236, 694));
-
-        jScrollPane1.setForeground(new java.awt.Color(0, 0, 0));
 
         listPerson.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -68,7 +60,7 @@ public class Menu_Left extends javax.swing.JPanel {
         listPerson.setLayout(listPersonLayout);
         listPersonLayout.setHorizontalGroup(
             listPersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
+            .addGap(0, 299, Short.MAX_VALUE)
         );
         listPersonLayout.setVerticalGroup(
             listPersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,17 +73,17 @@ public class Menu_Left extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
