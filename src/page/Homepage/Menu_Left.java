@@ -4,6 +4,9 @@
  */
 package page.Homepage;
 
+import components.Item_Person;
+import net.miginfocom.swing.MigLayout;
+
 /**
  *
  * @author trunk
@@ -15,6 +18,18 @@ public class Menu_Left extends javax.swing.JPanel {
      */
     public Menu_Left() {
         initComponents();
+        init();
+    }
+
+    private void init() {
+        listPerson.setLayout(new MigLayout());
+        showPeople();
+    }
+
+    private void showPeople() {
+        for (int i = 0; i < 10; i++) {
+            listPerson.add(new Item_Person("TVK " + i, i), "wrap");
+        }
     }
 
     /**
@@ -26,23 +41,55 @@ public class Menu_Left extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(51, 102, 255));
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listPerson = new javax.swing.JLayeredPane();
+
+        setBackground(new java.awt.Color(0, 0, 0));
+        setForeground(new java.awt.Color(0, 0, 0));
         setMaximumSize(new java.awt.Dimension(236, 694));
         setMinimumSize(new java.awt.Dimension(236, 694));
+
+        jScrollPane1.setForeground(new java.awt.Color(0, 0, 0));
+
+        listPerson.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout listPersonLayout = new javax.swing.GroupLayout(listPerson);
+        listPerson.setLayout(listPersonLayout);
+        listPersonLayout.setHorizontalGroup(
+            listPersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 290, Short.MAX_VALUE)
+        );
+        listPersonLayout.setVerticalGroup(
+            listPersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 950, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(listPerson);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 236, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 694, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        SearchFriend searchFriend = new SearchFriend();
+        searchFriend.setVisible(true);
+        searchFriend.pack();
+        searchFriend.setLocationRelativeTo(null);
+        System.out.println("TEST");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLayeredPane listPerson;
     // End of variables declaration//GEN-END:variables
 }

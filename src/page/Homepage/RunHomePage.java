@@ -4,15 +4,21 @@
  */
 package page.Homepage;
 
+import page.Main;
+
 /**
  *
  * @author trunk
  */
 public class RunHomePage {
+
     public static void main(String[] args) {
+
         Main mainx = new Main();
         mainx.setVisible(true);
         mainx.pack();
         
+
+
     }
 }

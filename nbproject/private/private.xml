@@ -3,8 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/trunk/OneDrive/Documents/NetBeansProjects/Assignment2/src/page/Homepage/RunHomePage.java</file>
             <file>file:/C:/Users/trunk/OneDrive/Documents/NetBeansProjects/Assignment2/src/page/Homepage/ChatComponent/ChatBody.java</file>
+=======
+            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/Assignment2/src/dao/UserDAO.java</file>
+            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/Assignment2/src/page/Login.java</file>
+            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/Assignment2/src/page/SignUp.java</file>
+            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/Assignment2/src/page/LoginAndSignUp.java</file>
+        </group>
+        <group name="Group 20240702-02:43:39">
+            <file>file:/D:/CSD/Assignment2/src/page/Homepage/Menu_Left.java</file>
+            <file>file:/D:/CSD/Assignment2/src/page/Homepage/Main.java</file>
+            <file>file:/D:/CSD/Assignment2/src/page/Homepage/Menu_Right.java</file>
+            <file>file:/D:/CSD/Assignment2/src/components/Item_Person.java</file>
+            <file>file:/D:/CSD/Assignment2/src/page/Homepage/Home.java</file>
+            <file>file:/D:/CSD/Assignment2/src/page/Homepage/RunHomePage.java</file>
+>>>>>>> 97e18c402bc274737a47c729a57c93e5c58db94e
         </group>
     </open-files>
 </project-private>

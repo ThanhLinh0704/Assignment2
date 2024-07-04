@@ -1,6 +1,8 @@
 
 package page;
 
+import model.Session;
+
 
 public class LoginAndSignUp {
 
@@ -11,6 +13,7 @@ public class LoginAndSignUp {
         LoginFrame.setVisible(true);
         LoginFrame.pack();
         LoginFrame.setLocationRelativeTo(null); 
+        
         
         
 //        User user1 = new User("h4", "Linh", "123", "linh", "Le", 1, "Linh@.com", "hanoi");
