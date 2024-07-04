@@ -4,7 +4,11 @@
  */
 package page.Homepage;
 
+import GraphBase.UserVertex;
 import components.Item_Person;
+import dao.GraphOfConnectionData;
+import java.util.Map;
+import model.Session;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -27,9 +31,20 @@ public class Menu_Left extends javax.swing.JPanel {
     }
 
     private void showPeople() {
-        for (int i = 0; i < 10; i++) {
-            listPerson.add(new Item_Person("TVK " + i, i), "wrap");
+        int userId = Session.getUserID();
+        GraphOfConnectionData graphOfConnectionData = new GraphOfConnectionData();
+
+        UserVertex user = graphOfConnectionData.graph.getUser(userId);
+
+        for (Map.Entry<UserVertex, Integer> entry : user.adjList.entrySet()) {
+            String userName = entry.getKey().firstName + " " + entry.getKey().lastName;
+            int id = entry.getKey().id;
+            listPerson.add(new Item_Person(userName, id), "wrap");
         }
+//
+//        for (int i = 0; i < 10; i++) {
+//            listPerson.add(new Item_Person("userName", 1), "wrap");
+//        }
     }
 
     /**

@@ -2,7 +2,6 @@ package GraphBase;
 
 import java.util.HashSet;
 import java.util.Set;
-import model.User;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -19,7 +18,6 @@ public class Graph {
 
     public Graph() {
         this.vertices = new HashSet<>();
-
     }
 
     public static Graph getSignleTonGraph() {
@@ -38,20 +36,16 @@ public class Graph {
         return null;
     }
 
-    public void addUserToGraph(int id) {
-        this.vertices.add(new UserVertex(id));
+    public void addUserToGraph(int id, String firstName, String lastName) {
+        this.vertices.add(new UserVertex(id, firstName, lastName));
     }
 
     public void addEdge(int u, int v, int weight) {
         UserVertex userU = this.getUser(u);
-        User userV = this.getUser(v);
+        UserVertex userV = this.getUser(v);
 
-        if (userU != null) {
-            if (userV == null) {
-                this.vertices.add(new UserVertex(v));
-            }
-            userU.adjList.put(userV, weight);
-        }
+        userU.adjList.put(userV, weight);
+
     }
 
     public void display() {

@@ -1,7 +1,6 @@
 package GraphBase;
 
 import java.util.HashMap;
-import model.User;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -14,13 +13,18 @@ import model.User;
 public class UserVertex {
 
     public int id;
-    public HashMap<User, Integer> adjList;
+    public String firstName;
+    public String lastName;
+    public HashMap<UserVertex, Integer> adjList;
 
     public UserVertex() {
     }
 
-    public UserVertex(int id) {
+    public UserVertex(int id, String firstName, String lastName) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+
         //this.adjList = new ArrayList<>();
         this.adjList = new HashMap<>();
     }

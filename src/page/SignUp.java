@@ -3,6 +3,7 @@ package page;
 import Until.Encoding;
 import Until.Validation;
 import dao.UserDAO;
+import java.util.Date;
 import model.User;
 
 public class SignUp extends javax.swing.JFrame {
@@ -342,7 +343,7 @@ public class SignUp extends javax.swing.JFrame {
         if (validation.checkInputSignUp(firstName, lastName, userName, password, confirmPassword, email, address, dayofbirth)) {
             password = encoding.toSHA1(password);
 
-            User user = new User(0, userName, password, firstName, lastName, gender, email, address, getRegionFromAddress(address), dayofbirth);
+            User user = new User(0, userName, password, firstName, lastName, gender, email, address, getRegionFromAddress(address), new Date());
             UserDAO userDAO = new UserDAO();
             userDAO.insert(user);
 
@@ -393,7 +394,6 @@ public class SignUp extends javax.swing.JFrame {
     private void tfAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAddressActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfAddressActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
