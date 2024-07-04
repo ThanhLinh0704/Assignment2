@@ -4,6 +4,8 @@
  */
 package page.Homepage;
 
+import page.Main;
+
 /**
  *
  * @author trunk
@@ -11,8 +13,12 @@ package page.Homepage;
 public class RunHomePage {
 
     public static void main(String[] args) {
-        Main main = new Main();
-        main.setVisible(true);
-        main.pack();
+
+        Main mainx = new Main();
+        mainx.setVisible(true);
+        mainx.pack();
+        
+
+
     }
 }

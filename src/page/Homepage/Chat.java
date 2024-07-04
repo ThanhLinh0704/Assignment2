@@ -4,17 +4,42 @@
  */
 package page.Homepage;
 
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import net.miginfocom.swing.MigLayout;
+import page.Homepage.ChatComponent.ChatBody;
+import page.Homepage.ChatComponent.ChatBottom;
+import page.Homepage.ChatComponent.ChatTitle;
+import page.Homepage.ChatComponent.SingleTonBodyChat;
+
 /**
  *
  * @author trunk
  */
 public class Chat extends javax.swing.JPanel {
-
+    
+//    private ChatBody chatBody = new ChatBody();
+//    private ChatBottom chatBottom = new ChatBottom();
     /**
      * Creates new form RightPanel
      */
     public Chat() {
         initComponents();
+        init();
+        
+        
+    }
+    
+    private void init(){
+        this.setLayout(new MigLayout("fillx", "0[fill]0", ""));
+        ChatTitle chatTitle = new ChatTitle();
+        ChatBody chatBody = SingleTonBodyChat.getBodyChat();
+        ChatBottom chatBottom = new ChatBottom();
+        this.add(chatTitle, "wrap");
+        this.add(chatBody, "wrap");
+        this.add(chatBottom, "wrap");
+            
+        
     }
 
     /**
@@ -39,7 +64,7 @@ public class Chat extends javax.swing.JPanel {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        setBackground(new java.awt.Color(153, 153, 153));
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(763, 694));
         setName(""); // NOI18N
         setRequestFocusEnabled(false);
@@ -48,15 +73,17 @@ public class Chat extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGap(0, 782, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 744, Short.MAX_VALUE)
+            .addGap(0, 694, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+    
 }
