@@ -26,8 +26,8 @@ public class UserDAO implements DAOInterface<User> {
             Connection connection = DBConnection.getConnection();
             Statement st = connection.createStatement();
 
-            String sql = "INSERT INTO users (userID, username, password, firstname, gender, email, address, lastName, DOB, region)"
-                    + " VALUES ('" + t.getIduser() + "' , '" + t.getUseName() + "' , '" + t.getPassword() + "' , '" + t.getFirstName() + "' , '" + t.getGender() + "' , '" + t.getEmail() + "' , '" + t.getAddress() + "' , '" + t.getLastName() + "' , '" + t.getDayofBirth() + "' , '" + t.getRegion() + "')";
+            String sql = "INSERT INTO users (username, password, firstname, gender, email, address, lastName, DOB, region)"
+                    + " VALUES ('" + t.getUseName() + "' , '" + t.getPassword() + "' , '" + t.getFirstName() + "' , '" + t.getGender() + "' , '" + t.getEmail() + "' , '" + t.getAddress() + "' , '" + t.getLastName() + "' , '" + t.getDayofBirth() + "' , '" + t.getRegion() + "')";
             st.executeUpdate(sql);
 
             System.out.println("Ban da thuc thi");
