@@ -34,6 +34,12 @@ public class User {
    
     }
 
+    public User(String useName) {
+        this.useName = useName;
+    }
+    
+    
+
     public User() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

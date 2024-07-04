@@ -356,26 +356,24 @@ public class SignUp extends javax.swing.JFrame {
 
     private String getRegionFromAddress(String address) {
         switch (address) {
-            case "Hà Nội":
-            case "Hải Phòng":
-            case "Vĩnh Phúc":
-            case "Thái Bình":
-            case "Nam Định":
+            case "HaNoi":
+            case "HaiPhong":
+            case "VinhPhuc":
+            case "ThaiBinh":
+            case "NamDing":
                 return "Miền Bắc";
 
-            case "Thanh Hóa":
-            case "Nghệ An":
-            case "Hà Tĩnh":
-            case "Quảng Ngãi":
-            case "Bình Định":
-            case "Phú Yên":
-            case "Ninh Thuận":
+            case "ThanhHoa":
+            case "NgheAn":
+            case "HaTinh":
+            case "QuangNgai":
+            case "BinhDinh":
+            case "PhuYen":
+            case "NinhThuan":
                 return "Miền Trung";
 
-            case "TP HCM":
-            case "Ho Chi Minh":
-            case "Cần Thơ":
-            case "Ca Mau":
+            case "HoChiMinh":
+            case "CaMau":
                 return "Miền Nam";
 
             default:
