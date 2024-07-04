@@ -25,7 +25,7 @@ public class Menu_Left extends javax.swing.JPanel {
         listPerson.setLayout(new MigLayout());
         showPeople();
     }
-
+    
     private void showPeople() {
         for (int i = 0; i < 10; i++) {
             listPerson.add(new Item_Person("TVK " + i, i), "wrap");

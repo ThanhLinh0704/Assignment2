@@ -14,7 +14,7 @@ import java.util.Set;
  * @author trunk
  */
 public class Graph {
-    private Set<User> vertices;
+    private Set<UserVertex> vertices;
     private static Graph instance;
     public Graph(){
         this.vertices = new HashSet<>();
@@ -27,8 +27,8 @@ public class Graph {
         }
         return instance;
     }
-    public User getUser(int id){
-        for(User user: this.vertices){
+    public UserVertex getUser(int id){
+        for(UserVertex user: this.vertices){
             if(user.id == id){
                 return user;
             }
@@ -36,20 +36,19 @@ public class Graph {
         return null;
     }
     
-    public void addUserToGraph(int id){
-        this.vertices.add(new User(id));
+    public void addUserToGraph(int id, String firstName, String lastName){
+        this.vertices.add(new UserVertex(id, firstName, lastName));
     }
     
     public void addEdge(int u, int v, int weight){
-        User userU = this.getUser(u);
-        User userV = this.getUser(v);
+        UserVertex userU = this.getUser(u);
+        UserVertex userV = this.getUser(v);
         
-        if(userU != null){
-            if(userV == null){
-                this.vertices.add(new User(v));
-            }
-            userU.adjList.put(userV, weight);
-        }
+        
+        userU.adjList.put(userV, weight);
+        
+        
+        
     }
     
     

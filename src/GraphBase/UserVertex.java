@@ -12,15 +12,20 @@ import java.util.HashMap;
  *
  * @author trunk
  */
-public class User {
+public class UserVertex {
     public int id;
-    public HashMap<User, Integer> adjList;
+    public String firstName;
+    public String lastName;
+    public HashMap<UserVertex, Integer> adjList;
             
-    public User() {
+    public UserVertex() {
     }
 
-    public User(int id) {
+    public UserVertex(int id, String firstName, String lastName) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+                
         //this.adjList = new ArrayList<>();
         this.adjList = new HashMap<>();
     }
