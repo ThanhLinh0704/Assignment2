@@ -4,7 +4,11 @@
  */
 package page.Homepage;
 
+import GraphBase.UserVertex;
 import components.Item_Person;
+import dao.GraphOfConnectionData;
+import java.util.Map;
+import model.Session;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -25,10 +29,17 @@ public class Menu_Left extends javax.swing.JPanel {
         listPerson.setLayout(new MigLayout());
         showPeople();
     }
-    
+
     private void showPeople() {
-        for (int i = 0; i < 10; i++) {
-            listPerson.add(new Item_Person("TVK " + i, i), "wrap");
+        int userId = Session.getUserID();
+        GraphOfConnectionData graphOfConnectionData = new GraphOfConnectionData();
+
+        UserVertex user = graphOfConnectionData.graph.getUser(userId);
+
+        for (Map.Entry<UserVertex, Integer> entry : user.adjList.entrySet()) {
+            String userName = entry.getKey().firstName + " " + entry.getKey().lastName;
+            int id = entry.getKey().id;
+            listPerson.add(new Item_Person(userName, id), "wrap");
         }
     }
 
@@ -78,9 +89,9 @@ public class Menu_Left extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

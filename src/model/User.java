@@ -14,6 +14,7 @@ import java.sql.Date;
  * @author laptop lenovo
  */
 public class User {
+
     private int iduser;
     private String useName;
     private String password;
@@ -35,15 +36,18 @@ public class User {
         this.email = email;
         this.address = address;
         this.region = region;
-        this.dayofBirth= dayofBirth;
-   
+        this.dayofBirth = dayofBirth;
+
     }
 
     public User(String useName) {
         this.useName = useName;
     }
-    
-    
+
+    public User(int id, String userName) {
+        this.useName = userName;
+        this.iduser = id;
+    }
 
     public User() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -128,9 +132,5 @@ public class User {
     public void setDayofBirth(Date dayofBirth) {
         this.dayofBirth = dayofBirth;
     }
-    
-    
-    
-    
-    
+
 }
