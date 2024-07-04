@@ -4,6 +4,9 @@
  */
 package page.Homepage;
 
+import components.Item_Person;
+import net.miginfocom.swing.MigLayout;
+
 /**
  *
  * @author trunk
@@ -15,6 +18,18 @@ public class Menu_Left extends javax.swing.JPanel {
      */
     public Menu_Left() {
         initComponents();
+        init();
+    }
+
+    private void init() {
+        listPerson.setLayout(new MigLayout());
+        showPeople();
+    }
+
+    private void showPeople() {
+        for (int i = 0; i < 10; i++) {
+            listPerson.add(new Item_Person("TVK " + i, i), "wrap");
+        }
     }
 
     /**
@@ -26,50 +41,43 @@ public class Menu_Left extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listPerson = new javax.swing.JLayeredPane();
 
-        setBackground(new java.awt.Color(51, 102, 255));
+        setBackground(new java.awt.Color(0, 0, 0));
+        setForeground(new java.awt.Color(0, 0, 0));
         setMaximumSize(new java.awt.Dimension(236, 694));
         setMinimumSize(new java.awt.Dimension(236, 694));
 
-        jButton1.setText("Search");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setForeground(new java.awt.Color(0, 0, 0));
 
-        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
-        jLayeredPane1.setLayout(jLayeredPane1Layout);
-        jLayeredPane1Layout.setHorizontalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        listPerson.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout listPersonLayout = new javax.swing.GroupLayout(listPerson);
+        listPerson.setLayout(listPersonLayout);
+        listPersonLayout.setHorizontalGroup(
+            listPersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
-        jLayeredPane1Layout.setVerticalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 641, Short.MAX_VALUE)
+        listPersonLayout.setVerticalGroup(
+            listPersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 950, Short.MAX_VALUE)
         );
+
+        jScrollPane1.setViewportView(listPerson);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(116, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
-            .addComponent(jLayeredPane1)
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPane1))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
+
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
@@ -81,7 +89,7 @@ public class Menu_Left extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLayeredPane listPerson;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,7 +4,6 @@
  */
 package page.Homepage;
 
-import java.awt.FlowLayout;
 import javax.swing.UIManager;
 
 /**
@@ -17,6 +16,8 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
+        initComponents();
+
         try {
             // set system L&F
             UIManager.setLookAndFeel(
@@ -24,15 +25,6 @@ public class Main extends javax.swing.JFrame {
         } catch (Exception e) {
 
         }
-        initComponents();
-        init();
-    }
-
-    private void init() {
-        this.setLayout(new FlowLayout());
-        this.add(new Menu_Left());
-        this.add(new Chat());
-        this.add(new Menu_Right());
     }
 
     /**
@@ -44,19 +36,26 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        home1 = new page.Homepage.Home();
+        body = new javax.swing.JLayeredPane();
+        home3 = new page.Homepage.Home();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(1276, 745));
+
+        body.setLayout(new java.awt.BorderLayout());
+        body.add(home3, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 651, Short.MAX_VALUE)
+            .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, 1167, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 389, Short.MAX_VALUE)
+            .addComponent(body, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
         );
 
         pack();
@@ -98,5 +97,8 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLayeredPane body;
+    private page.Homepage.Home home1;
+    private page.Homepage.Home home3;
     // End of variables declaration//GEN-END:variables
 }
