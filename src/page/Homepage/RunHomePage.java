@@ -17,8 +17,6 @@ public class RunHomePage {
         Main mainx = new Main();
         mainx.setVisible(true);
         mainx.pack();
-        
-
 
     }
 }
