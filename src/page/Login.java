@@ -192,8 +192,6 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-
-        
         String userName = tfUserName.getText();
         String password = String.valueOf(tfPassword.getPassword());
         password = encoding.toSHA1(password);
@@ -219,7 +217,6 @@ public class Login extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
         }
-
     }//GEN-LAST:event_btnLoginActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
