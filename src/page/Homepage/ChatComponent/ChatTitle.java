@@ -18,6 +18,8 @@ public class ChatTitle extends javax.swing.JPanel {
         
     }
     
+    
+    
     public void setUsername(String username){
         jLabel1.setText(username);
         
