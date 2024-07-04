@@ -3,6 +3,8 @@ package page;
 import Until.Encoding;
 import Until.Validation;
 import dao.UserDAO;
+import java.sql.Date;
+import model.DateUtils;
 import model.User;
 
 public class SignUp extends javax.swing.JFrame {
@@ -342,7 +344,8 @@ public class SignUp extends javax.swing.JFrame {
         if (validation.checkInputSignUp(firstName, lastName, userName, password, confirmPassword, email, address, dayofbirth)) {
             password = encoding.toSHA1(password);
 
-            User user = new User(0, userName, password, firstName, lastName, gender, email, address, getRegionFromAddress(address), dayofbirth);
+            Date dob = DateUtils.convertStringToSqlDate(dayofbirth);
+            User user = new User(0, userName, password, firstName, lastName, gender, email, address, getRegionFromAddress(address), dob);
             UserDAO userDAO = new UserDAO();
             userDAO.insert(user);
 
@@ -361,7 +364,7 @@ public class SignUp extends javax.swing.JFrame {
             case "VinhPhuc":
             case "ThaiBinh":
             case "NamDing":
-                return "Miền Bắc";
+                return "Bac";
 
             case "ThanhHoa":
             case "NgheAn":
@@ -370,11 +373,11 @@ public class SignUp extends javax.swing.JFrame {
             case "BinhDinh":
             case "PhuYen":
             case "NinhThuan":
-                return "Miền Trung";
+                return "Trung";
 
             case "HoChiMinh":
             case "CaMau":
-                return "Miền Nam";
+                return "Nam";
 
             default:
                 return "Unknown Region"; // or handle default case as needed
