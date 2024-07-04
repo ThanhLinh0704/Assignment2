@@ -4,6 +4,11 @@
  */
 package model;
 
+import java.sql.Date;
+
+
+
+
 /**
  *
  * @author laptop lenovo
@@ -19,9 +24,9 @@ public class User {
     private String email;
     private String address;
     private String region;
-    private String dayofBirth;
+    private Date dayofBirth;
 
-    public User(int iduser, String useName, String password, String firstName, String lastName, int gender, String email, String address, String region, String dayofBirth) {
+    public User(int iduser, String useName, String password, String firstName, String lastName, int gender, String email, String address, String region, Date dayofBirth) {
         this.iduser = iduser;
         this.useName = useName;
         this.password = password;
@@ -120,11 +125,11 @@ public class User {
         this.region = region;
     }
 
-    public String getDayofBirth() {
+    public Date getDayofBirth() {
         return dayofBirth;
     }
 
-    public void setDayofBirth(String dayofBirth) {
+    public void setDayofBirth(Date dayofBirth) {
         this.dayofBirth = dayofBirth;
     }
 

@@ -41,10 +41,6 @@ public class Menu_Left extends javax.swing.JPanel {
             int id = entry.getKey().id;
             listPerson.add(new Item_Person(userName, id), "wrap");
         }
-//
-//        for (int i = 0; i < 10; i++) {
-//            listPerson.add(new Item_Person("userName", 1), "wrap");
-//        }
     }
 
     /**
