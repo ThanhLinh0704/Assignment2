@@ -8,16 +8,12 @@ package page.Homepage.ChatComponent;
  *
  * @author trunk
  */
-public class SingleTonBodyChat {
-    private static ChatBody bodyChat;
-    
-    public static ChatBody getBodyChat(){
-        if(bodyChat == null){
-            bodyChat = new ChatBody();
-            
+public class SingleTonChatTitle {
+    private static ChatTitle instance;
+    public static ChatTitle getChatTitle(){
+        if(instance == null){
+            return instance = new ChatTitle();
         }
-        return bodyChat;
+        return instance;
     }
-    
-    
 }

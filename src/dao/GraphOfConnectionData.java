@@ -10,8 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+
 
 /**
  *
@@ -23,12 +22,21 @@ public class GraphOfConnectionData {
 
     private String[] regions = {"Bac", "Trung", "Nam"};
 
-    public void GraphOfConnectionData() {
+
+
+
+    public GraphOfConnectionData() {
+        
         this.loadUser();
         this.loadUserConnection();
+        
     }
 
+
+
+
     public void loadUser() {
+
         try {
             Connection c = DBConnection.getConnection();
             Statement st = c.createStatement();
@@ -46,64 +54,74 @@ public class GraphOfConnectionData {
         }
     }
 
+
     public void loadUserConnection() {
-        HashMap<Integer, Integer> friendships = new HashMap();
+
+        int[][] friendshipsArray = new int[20][20];
+        
         try {
             Connection c = DBConnection.getConnection();
             Statement st = c.createStatement();
-            String sql1 = "select userID, friendID rom friendships";
+            String sql1 = "select userID, friendID from friendships";
             ResultSet rs1 = st.executeQuery(sql1);
             while (rs1.next()) {
                 int userID = rs1.getInt("userID");
                 int friendID = rs1.getInt("friendID");
 
-                friendships.put(userID, friendID);
-
-//                String sql2 = "select region from users where userID = " + userID;
-//                String sql3 = "selcet region fron users where userID = " + friendID;
-//                ResultSet rs2 = st.executeQuery(sql2);
-//                ResultSet rs3 = st.executeQuery(sql3);
-//
-//                String region1 = "";
-//                String region2 = "";
-//                while(rs2.next()){
-//                    region1 = rs2.getString("region");
-//
-//                }
-//
-//                while(rs3.next()){
-//                    region2 = rs3.getString("region");
-//                }
-//
-//                int weight = this.getWeight(region1, region2);
-//
-//                this.graph.addEdge(userID, friendID, weight);
-            }
-
-            for (Map.Entry<Integer, Integer> entry : friendships.entrySet()) {
-                int userID = entry.getKey();
-                int friendID = entry.getValue();
-                String sqlGetRegionOfUser = "select region from users where userID = " + userID;
-                String sqlGetRegionOfFriend = "selcet region fron users where userID = " + friendID;
-
-                ResultSet rs2 = st.executeQuery(sqlGetRegionOfUser);
-                ResultSet rs3 = st.executeQuery(sqlGetRegionOfFriend);
-
-                String region1 = "";
-                String region2 = "";
-                while (rs2.next()) {
-                    region1 = rs2.getString("region");
-                }
-
-                while (rs3.next()) {
-                    region2 = rs3.getString("region");
-                }
-
-                int weight = this.getWeight(region1, region2);
-
-                this.graph.addEdge(userID, friendID, weight);
+                System.out.println(userID + " " + friendID);
+                
+                friendshipsArray[userID][friendID] = 1;
 
             }
+
+            System.out.println("oke1");
+
+            for (int i = 0; i < friendshipsArray.length; i++) {
+                for (int j = 0; j < friendshipsArray[i].length; j++) {
+                    if (friendshipsArray[i][j] == 1) {
+                        int userID = i;
+                        int friendID = j;
+                        
+                        String sqlGetRegionOfUser = "select region from users where userID = " + userID;
+                        String sqlGetRegionOfFriend = "select region from users where userID = " + friendID;
+                        
+                        
+                        ResultSet rs2 = st.executeQuery(sqlGetRegionOfUser);
+                        
+                        
+                        String region1 = "";
+                        String region2 = "";
+                        while (rs2.next()) {
+                            region1 = rs2.getString("region");
+                            
+                        }
+                        
+                        rs2.close();
+                        
+                        ResultSet rs3 = st.executeQuery(sqlGetRegionOfFriend);
+                        
+                        while (rs3.next()) {
+                            region2 = rs3.getString("region");
+                            
+                        }
+                        
+                        rs3.close();
+
+                        int weight = this.getWeight(region1, region2);
+                        
+                        this.graph.addEdge(userID, friendID, weight);
+                        
+                        
+                        
+                    }
+                }
+                
+
+                
+
+            }
+
+            
 
             DBConnection.closeConnection(c);
         } catch (Exception e) {
@@ -117,11 +135,13 @@ public class GraphOfConnectionData {
         return Math.abs(index1 - index2);
     }
 
+
     public static void main(String[] args) {
         GraphOfConnectionData gr = new GraphOfConnectionData();
 
         gr.graph.display();
 
     }
+
 
 }

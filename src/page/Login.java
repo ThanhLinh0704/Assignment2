@@ -15,7 +15,7 @@ import model.Session;
 public class Login extends javax.swing.JFrame {
 
     private Encoding encoding = new Encoding();
-
+    
     public Login() {
         initComponents();
     }
