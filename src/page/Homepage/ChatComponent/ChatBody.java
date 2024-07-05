@@ -5,12 +5,19 @@
 package page.Homepage.ChatComponent;
 
 import database.DBConnection;
+import java.awt.Adjustable;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.swing.JScrollBar;
+import javax.swing.SwingUtilities;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -18,132 +25,105 @@ import net.miginfocom.swing.MigLayout;
  * @author trunk
  */
 public class ChatBody extends javax.swing.JPanel {
-
-    /**
-     * Creates new form ChatBody
-     */
+    
+    // who is use chatBody at this moment
+    public int currentUserId = 0;
     public ChatBody() {
         initComponents();
         init();
-        
-        
-//        addItemLeft("I am trying to get a scrollPane working correctly, but not having any luck. The picture drawn in the center panel is quite large and goes off the screen. I visited");
-//
-//        addItemRight("I am trying to get a scrollPane working correctly, but not having any luck. The picture drawn in the center panel is quite large and goes off the screen. I visited");
-//
-//        addItemLeft("She was in a hurry. Not the standard hurry when you're in a rush to get someplace, but a frantic hurry. The type of hurry where a few seconds could mean life or death. She raced down the road ignoring speed limits and weaving between cars. She was only a few minutes away when traffic came to a dead standstill on the road ahead. ");
-//        addItemRight("She was in a hurry. Not the standard hurry when you're in a rush to get someplace, but a frantic hurry. The type of hurry where a few seconds could mean life or death. She raced down the road ignoring speed limits and weaving between cars. She was only a few minutes away when traffic came to a dead standstill on the road ahead. ");
-//
-//        addItemLeft("I am trying to get a scrollPane working correctly, but not having any luck. The picture drawn in the center panel is quite large and goes off the screen. I visited");
-//        addItemLeft("She was in a hurry. Not the standard hurry when you're in a rush to get someplace, but a frantic hurry. The type of hurry where a few seconds could mean life or death. She raced down the road ignoring speed limits and weaving between cars. She was only a few minutes away when traffic came to a dead standstill on the road ahead. ");
-//        
-//        addItemRight("I am trying to get a scrollPane working correctly, but not having any luck. The picture drawn in the center panel is quite large and goes off the screen. I visited");
-//        addItemRight("She was in a hurry. Not the standard hurry when you're in a rush to get someplace, but a frantic hurry. The type of hurry where a few seconds could mean life or death. She raced down the road ignoring speed limits and weaving between cars. She was only a few minutes away when traffic came to a dead standstill on the road ahead. ");
-//        addItemLeft("I am trying to get a scrollPane working correctly, but not having any luck. The picture drawn in the center panel is quite large and goes off the screen. I visited");
-//
-//        addItemRight("I am trying to get a scrollPane working correctly, but not having any luck. The picture drawn in the center panel is quite large and goes off the screen. I visited");
-//
-//        addItemLeft("She was in a hurry. Not the standard hurry when you're in a rush to get someplace, but a frantic hurry. The type of hurry where a few seconds could mean life or death. She raced down the road ignoring speed limits and weaving between cars. She was only a few minutes away when traffic came to a dead standstill on the road ahead. ");
-//
-//        addItemRight("She was in a hurry. Not the standard hurry when you're in a rush to get someplace, but a frantic hurry. The type of hurry where a few seconds could mean life or death. She raced down the road ignoring speed limits and weaving between cars. She was only a few minutes away when traffic came to a dead standstill on the road ahead. ");
-//
-//        addItemLeft("I am trying to get a scrollPane working correctly, but not having any luck. The picture drawn in the center panel is quite large and goes off the screen. I visited");
-//        addItemLeft("She was in a hurry. Not the standard hurry when you're in a rush to get someplace, but a frantic hurry. The type of hurry where a few seconds could mean life or death. She raced down the road ignoring speed limits and weaving between cars. She was only a few minutes away when traffic came to a dead standstill on the road ahead. ");
-//        
-//        addItemRight("I am trying to get a scrollPane working correctly, but not having any luck. The picture drawn in the center panel is quite large and goes off the screen. I visited");
-//        addItemRight("She was in a hurry. Not the standard hurry when you're in a rush to get someplace, but a frantic hurry. The type of hurry where a few seconds could mean life or death. She raced down the road ignoring speed limits and weaving between cars. She was only a few minutes away when traffic came to a dead standstill on the road ahead. ");
-//        
-//        addItemLeft("I am trying to get a scrollPane working correctly, but not having any luck. The picture drawn in the center panel is quite large and goes off the screen. I visited");
-//
-//        addItemRight("I am trying to get a scrollPane working correctly, but not having any luck. The picture drawn in the center panel is quite large and goes off the screen. I visited");
-//        addItemRight("She was in a hurry. Not the standard hurry when you're in a rush to get someplace, but a frantic hurry. The type of hurry where a few seconds could mean life or death. She raced down the road ignoring speed limits and weaving between cars. She was only a few minutes away when traffic came to a dead standstill on the road ahead. ");
-//        
-        loadText(2, 1);
-        
+
+
     }
-    
-    public void init(){
-        
-        body.setLayout(new MigLayout("fillx"));
+
+    public void init() {
+
+        body.setLayout(new MigLayout("fillx", "", "5[]5"));
         sp.setVerticalScrollBar(new JScrollBar());
         sp.getVerticalScrollBar().setBackground(Color.WHITE);
         sp.getVerticalScrollBar().setUnitIncrement(30);
-        
-        
+
+
     }
-    
-    public void addItemLeft(String text){
+
+    public void addItemLeft(String text) {
         ChatLeft item = new ChatLeft();
         item.setText(text);
         body.add(item, "wrap, w :: 60%");
         body.repaint();
         body.revalidate();
-        
+        scrollToBottom();
+
     }
-    
-    
-    public void addItemRight(String text){
+
+    public void addItemRight(String text) {
         ChatRight item = new ChatRight();
         item.setText(text);
         body.add(item, "wrap, al right, w :: 60%");
         body.repaint();
         body.revalidate();
+        scrollToBottom();
     }
-    
-    
-    public void loadText(int friendID, int userID){
+
+    public void loadText(int friendID, int userID) {
+        System.out.println("remove all first");
+        body.removeAll();
+        body.repaint();
+        body.revalidate();
         try {
             Connection c = DBConnection.getConnection();
-            
+
             Statement st = c.createStatement();
-            
-            String sqlGetFriendship1 = "SELECT id FROM friendships WHERE userID = + " +  userID + " AND friendID =  " +  friendID;
-            
+
+            String sqlGetFriendship1 = "SELECT id FROM friendships WHERE userID = + " + userID + " AND friendID =  " + friendID;
+
             ResultSet rsFriendship1 = st.executeQuery(sqlGetFriendship1);
             int friendship1 = 0;
-            while(rsFriendship1.next()){
+            while (rsFriendship1.next()) {
                 friendship1 = rsFriendship1.getInt("id");
             }
-            System.out.println(friendship1);
-            
-            
-            String sqlGetFriendship2 = "SELECT id FROM friendships WHERE userID = + " + friendID  + " AND friendID =  " +  userID;
+
+            String sqlGetFriendship2 = "SELECT id FROM friendships WHERE userID = + " + friendID + " AND friendID =  " + userID;
             ResultSet rsFriendship2 = st.executeQuery(sqlGetFriendship2);
             int friendship2 = 0;
-            while(rsFriendship2.next()){
+            while (rsFriendship2.next()) {
                 friendship2 = rsFriendship2.getInt("id");
             }
-            System.out.println(friendship2);
-            
-            String sql1 = "SELECT * FROM textofchatting WHERE friendshipid = " + friendship1 + " UNION ALL " + "(SELECT * FROM textofchatting WHERE friendshipid = " + friendship2 +") ORDER BY timeoftext";
-            
+
+            String sql1 = "SELECT * FROM textofchatting WHERE friendshipid = " + friendship1 + " UNION ALL " + "(SELECT * FROM textofchatting WHERE friendshipid = " + friendship2 + ") ORDER BY timeoftext";
+
             ResultSet rs = st.executeQuery(sql1);
-            int i = 1;
-            while(rs.next()){
+
+            while (rs.next()) {
                 int friendshipID = rs.getInt("friendshipid");
                 String content = rs.getString("content");
-                System.out.println(content);
-                
-                
-               
-                
-                
-                if(friendship1 == friendshipID){
+
+                if (friendship1 == friendshipID) {
                     this.addItemRight(content);
-                    
-                }
-                else if(friendship2 == friendshipID){
+
+                } else if (friendship2 == friendshipID) {
                     this.addItemLeft(content);
                 }
-                System.out.println(i++);
+
             }
-            
+
             DBConnection.closeConnection(c);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
+    private void scrollToBottom() {
+        JScrollBar verticalBar = sp.getVerticalScrollBar();
+        AdjustmentListener downScroller = new AdjustmentListener() {
+            @Override
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                Adjustable adjustable = e.getAdjustable();
+                adjustable.setValue(adjustable.getMaximum());
+                verticalBar.removeAdjustmentListener(this);
+            }
+        };
+        verticalBar.addAdjustmentListener(downScroller);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -158,20 +138,12 @@ public class ChatBody extends javax.swing.JPanel {
         body = new javax.swing.JPanel();
 
         sp.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        sp.setToolTipText("");
+        sp.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        sp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         body.setBackground(new java.awt.Color(255, 153, 0));
-
-        javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
-        body.setLayout(bodyLayout);
-        bodyLayout.setHorizontalGroup(
-            bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 711, Short.MAX_VALUE)
-        );
-        bodyLayout.setVerticalGroup(
-            bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 508, Short.MAX_VALUE)
-        );
-
+        body.setLayout(new javax.swing.BoxLayout(body, javax.swing.BoxLayout.LINE_AXIS));
         sp.setViewportView(body);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -179,13 +151,13 @@ public class ChatBody extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(sp, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
+                .addComponent(sp, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(sp, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+                .addComponent(sp, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -195,7 +167,5 @@ public class ChatBody extends javax.swing.JPanel {
     private javax.swing.JPanel body;
     private javax.swing.JScrollPane sp;
     // End of variables declaration//GEN-END:variables
-
-
 
 }

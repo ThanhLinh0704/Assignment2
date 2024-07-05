@@ -30,4 +30,7 @@ public class UserVertex {
         this.adjList = new HashMap<>();
     }
     
+    
+    
+    
 }
