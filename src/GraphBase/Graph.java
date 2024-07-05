@@ -1,6 +1,7 @@
 package GraphBase;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /*
@@ -18,6 +19,7 @@ public class Graph {
 
     public Graph() {
         this.vertices = new HashSet<>();
+
     }
 
     public static Graph getSignleTonGraph() {
@@ -48,6 +50,11 @@ public class Graph {
 
     }
 
+
+    public Set<UserVertex> getVertices() {
+        return vertices;
+    }
+
     public void display() {
         this.vertices.stream().forEach(vertex -> {
             System.out.print(vertex.id + " -> ");
@@ -55,5 +62,15 @@ public class Graph {
             System.out.println();
 
         });
+    }
+
+    public boolean checkConnection(UserVertex user1, UserVertex user2) {
+        UserVertex user = this.getUser(user1.id);
+        for (Map.Entry<UserVertex, Integer> entry : user.adjList.entrySet()) {
+            if (user2.id == entry.getKey().id) {
+                return true;
+            }
+        }
+        return false;
     }
 }

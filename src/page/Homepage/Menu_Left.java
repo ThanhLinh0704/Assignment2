@@ -39,6 +39,10 @@ public class Menu_Left extends javax.swing.JPanel {
         for (Map.Entry<UserVertex, Integer> entry : user.adjList.entrySet()) {
             String userName = entry.getKey().firstName + " " + entry.getKey().lastName;
             int id = entry.getKey().id;
+
+            
+
+
             listPerson.add(new Item_Person(userName, id), "wrap");
         }
     }

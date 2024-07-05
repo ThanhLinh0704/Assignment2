@@ -4,7 +4,10 @@
  */
 package page.Homepage.ChatComponent;
 
+import ChatService.ChatClient;
+import dao.TextDAO;
 import database.DBConnection;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +22,10 @@ import net.miginfocom.swing.MigLayout;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.sql.Timestamp;
+import model.Session;
+import model.TextOfChatting;
 
 /**
  *
@@ -27,82 +34,90 @@ import java.time.format.DateTimeFormatter;
 
 public class ChatBottom extends javax.swing.JPanel {
 
-
+    
+    public JButton button;
+    public JIMSendTextPane txt;
     public ChatBottom() {
+        // start client
+//        chatClient = new ChatClient(Session.getUserID());
+//        chatClient.startClient();
         initComponents();
-        this.init(); 
+        
+        init();
     }
     
-    private void init(){
-        setLayout(new MigLayout("fillx, filly", "", ""));
+    public void init(){
+        
+        setLayout(new MigLayout());
         JScrollPane scroll = new JScrollPane();
-        JIMSendTextPane txt = new JIMSendTextPane();
+        txt = new JIMSendTextPane();
+        
         scroll.setViewportView(txt);
+        scroll.setBorder(null);
+        scroll.setViewportBorder(null);
         this.add(scroll, "h 100%, w 100%");
         
         
         JPanel panel = new JPanel();
-        panel.setLayout(new MigLayout("", "", ""));
-        JButton button = new JButton();
+        panel.setLayout(new MigLayout("filly", "0[]0", "0[bottom]0"));
+        button = new JButton();
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         button.setText("SEND");
-        panel.add(button, "h 100%");
+        panel.add(button, "h 100%, w 100%");
         this.add(panel, "h 100%");
         
-        button.addActionListener(new ActionListener() {
-            
-            
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ChatBody chatBody = SingleTonBodyChat.getBodyChat();
-                String text = txt.getText().trim();
-                if(!text.isEmpty()){
-                    chatBody.addItemRight(text);
-                    txt.setText("");
-                    txt.grabFocus();
-                    
-                    // save text to db
-                    
-                }else{
-                    txt.grabFocus();
-                }
-            }
-            
-        });
         
     }
     
     
-    private void saveTextToDB(String text, int userID, int friendID){
+    public void saveTextToDB(String text, int userID, int friendID){
+        
+        
+        int friendshipID = 0;
         try {
             
             Connection c = DBConnection.getConnection();
             
             Statement st = c.createStatement();
             
-            String sqlGetFriendShipID = "Seclect id from friendships where userID = " + userID + " and friendID = " + friendID ;
+            String sqlGetFriendShipID = "Select * from friendships where userID = " + userID + " and friendID = " + friendID ;
+            
                         
             ResultSet rs = st.executeQuery(sqlGetFriendShipID);
             
-            LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-            String formattedDateTime = now.format(formatter);
-            System.out.println(formattedDateTime);  
             
-            int friendshipID = 0;
+            
+            
             while(rs.next()){
+                
                 friendshipID = rs.getInt("id");
+               
+                        
             }
             
             
             
+            LocalDateTime now = LocalDateTime.now();
             
+            Timestamp timestamp = Timestamp.valueOf(now);
             
+            System.out.println(timestamp.toString());
+            TextOfChatting txt = new TextOfChatting(friendshipID, text, timestamp);
             
+            TextDAO textDAO = new TextDAO();
+            
+            textDAO.insert(txt);
+
             DBConnection.closeConnection(c);
+            
+            
+            
                     
         } catch (Exception e) {
         }
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -110,16 +125,19 @@ public class ChatBottom extends javax.swing.JPanel {
     private void initComponents() {
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        setForeground(new java.awt.Color(0, 0, 255));
+        setDoubleBuffered(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 570, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addGap(0, 90, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

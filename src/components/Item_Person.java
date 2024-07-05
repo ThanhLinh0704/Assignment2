@@ -4,19 +4,37 @@
  */
 package components;
 
+import ChatService.ChatClient;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import model.Session;
+import page.Homepage.Chat;
+
+import page.Homepage.ChatComponent.ChatBody;
+import page.Homepage.ChatComponent.ChatBottom;
+import page.Homepage.ChatComponent.ChatTitle;
+
+import page.Homepage.ChatComponent.SingleTonChatBottom;
+import page.Homepage.ChatComponent.SingleTonChatTitle;
+import page.Homepage.Home;
+
+
 /**
  *
  * @author ADMIN
  */
 public class Item_Person extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form Item_Person
      */
-    int id;
+    public int id;
+    private ChatClient chatClient;
+    public String userName;
 
     public Item_Person(String name, int id) {
         this.id = id;
+        this.userName = name;
         initComponents();
         lb.setText(name);
     }
@@ -34,6 +52,7 @@ public class Item_Person extends javax.swing.JPanel {
         lb = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 204, 204));
+        setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -49,6 +68,7 @@ public class Item_Person extends javax.swing.JPanel {
                 imageAvatar1MouseClicked(evt);
             }
         });
+        imageAvatar1.setLayout(new javax.swing.BoxLayout(imageAvatar1, javax.swing.BoxLayout.LINE_AXIS));
 
         lb.setBackground(new java.awt.Color(255, 255, 255));
         lb.setText("Name");
@@ -65,9 +85,9 @@ public class Item_Person extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lb, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lb, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,7 +107,52 @@ public class Item_Person extends javax.swing.JPanel {
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-        System.out.println(this.id);
+        
+        ChatBody chatBody = Home.chat.getBody();
+        chatBody.currentUserId = this.id;
+        chatBody.loadText(this.id, Session.getUserID());
+        
+        
+        
+        
+        // setting chat bottom
+        ChatBottom chatBottom = SingleTonChatBottom.getBottomChat(); 
+        chatBottom.button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chatClient = Home.chatClient;
+                String text = chatBottom.txt.getText().trim();
+                if(!text.isEmpty()){
+                    chatBody.addItemRight(text);
+                    chatBottom.txt.setText("");
+                    // save text to db
+                    
+                    /* phan nay dung de test, tham so truyen vao khong duoc co dinh nhu the nao, tham so truyen vao la userID va FriendID */
+                    chatBottom.saveTextToDB(text, Session.getUserID(), id);
+                    
+                    chatClient.sendMessage(id + " " + text + " " + Session.getUserID());
+                    /**/
+                    
+                    chatBottom.txt.grabFocus();
+                    
+                    
+                    
+                }else{
+                    chatBottom.txt.grabFocus();
+                }
+            }
+            
+        });
+        
+        
+        
+        
+        // setting chattitle
+        ChatTitle chatTitle = SingleTonChatTitle.getChatTitle();
+        
+        chatTitle.setUsername(userName);
+        
+        
     }//GEN-LAST:event_formMouseClicked
 
     private void imageAvatar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageAvatar1MouseClicked
