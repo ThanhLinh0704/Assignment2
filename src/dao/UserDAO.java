@@ -39,6 +39,27 @@ public class UserDAO implements DAOInterface<User> {
         return 0;
 
     }
+    
+    public int insertFriendShip(User t) {
+
+        try {
+            Connection connection = DBConnection.getConnection();
+            Statement st = connection.createStatement();
+
+            String sql = "INSERT INTO friendships (userID, friendID)"
+                    + " VALUES ('" + Session.getUserID() + "' , '" + t.getIduser()+ "')";
+            st.executeUpdate(sql);
+
+            System.out.println("Ban da thuc thi");
+            DBConnection.closeConnection(connection);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+
+    }
+    
+    
 
     @Override
     public int update(User t) {
@@ -106,9 +127,25 @@ public class UserDAO implements DAOInterface<User> {
         return result;
     }
 
-    @Override
-    public User selectById(User t) {
-        return null;
+    public User selectByIdFriend(int t) {
+        User result = null;
+        try {
+            Connection connection = DBConnection.getConnection();
+            Statement st = connection.createStatement();
+            String sql = "SELECT * FROM users where userID = '" + t + "'";
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                int userId = rs.getInt("userID");
+                String username = rs.getString("username");
+                result = new User(userId, username);
+            }
+            DBConnection.closeConnection(connection);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @Override
@@ -131,6 +168,11 @@ public class UserDAO implements DAOInterface<User> {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public User selectById(User t) {
+        return null;
     }
 
 }

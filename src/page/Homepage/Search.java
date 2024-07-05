@@ -32,9 +32,9 @@ public class Search extends javax.swing.JPanel {
     UserDAO userDAO = new UserDAO();
     
     private void showPeople() {
-    List<User> users = userDAO.selectAll(); // Call selectAll() once and store the result
+    List<User> users = userDAO.selectAll(); 
     for (int i = 0; i < users.size(); i++) {
-        listPerson.add(new Item_AddPerson(users.get(i).getUseName(), i), "wrap");
+        listPerson.add(new Item_AddPerson(users.get(i).getUseName(), users.get(i).getIduser()), "wrap");
     }
 }
 

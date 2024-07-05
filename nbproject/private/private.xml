@@ -4,6 +4,19 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
 <<<<<<< HEAD
         <group>
+            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/src/components/Item_AddPerson.java</file>
+            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/src/dao/UserDAO.java</file>
+            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/src/dao/DAOInterface.java</file>
+            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/src/page/LoginAndSignUp.java</file>
+            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/src/page/Homepage/RunHomePage.java</file>
+            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/src/page/SignUp.java</file>
+            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/src/model/Session.java</file>
+            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/src/page/Homepage/Home.java</file>
+            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/src/page/Homepage/Search.java</file>
+        </group>
+=======
+<<<<<<< HEAD
+        <group>
             <file>file:/C:/Users/trunk/OneDrive/Documents/NetBeansProjects/Assignment2/src/page/Homepage/SingleTonChat.java</file>
             <file>file:/C:/Users/trunk/OneDrive/Documents/NetBeansProjects/Assignment2/src/page/Homepage/ChatComponent/ChatTitle.java</file>
             <file>file:/C:/Users/trunk/OneDrive/Documents/NetBeansProjects/Assignment2/src/dao/UserDAO.java</file>
@@ -31,5 +44,6 @@
 =======
         <group/>
 >>>>>>> ac95ed33319673ccba094240ea57230d1072483f
+>>>>>>> ad1336f3d1c711a791981640bcc5e007e3636aa5
     </open-files>
 </project-private>
