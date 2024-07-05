@@ -50,6 +50,7 @@ public class Graph {
 
     }
 
+
     public Set<UserVertex> getVertices() {
         return vertices;
     }

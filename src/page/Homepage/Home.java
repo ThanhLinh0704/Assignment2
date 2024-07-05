@@ -21,11 +21,15 @@ public class Home extends javax.swing.JLayeredPane {
     
 
     private void init() {
+
         
         chatClient.startClient();
         
         this.setLayout(new MigLayout());
         
+
+        this.setLayout(new MigLayout("fillx, filly", "0[pref, fill]5[]5[]0", "0[]0"));
+
         this.add(new Menu_Left());
         this.add(chat);
         this.add(new Menu_Right());

@@ -4,13 +4,14 @@
  */
 package dao;
 
+import database.DBConnection;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import database.DBConnection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import model.Session;
 import model.User;
 
 public class UserDAO implements DAOInterface<User> {
@@ -26,8 +27,8 @@ public class UserDAO implements DAOInterface<User> {
             Connection connection = DBConnection.getConnection();
             Statement st = connection.createStatement();
 
-            String sql = "INSERT INTO users (userID, username, password, firstname, gender, email, address, lastName, DOB, region)"
-                    + " VALUES ('" + t.getIduser() + "' , '" + t.getUseName() + "' , '" + t.getPassword() + "' , '" + t.getFirstName() + "' , '" + t.getGender() + "' , '" + t.getEmail() + "' , '" + t.getAddress() + "' , '" + t.getLastName() + "' , '" + t.getDayofBirth() + "' , '" + t.getRegion() + "')";
+            String sql = "INSERT INTO users (username, password, firstname, gender, email, address, lastName, DOB, region)"
+                    + " VALUES ('" + t.getUseName() + "' , '" + t.getPassword() + "' , '" + t.getFirstName() + "' , '" + t.getGender() + "' , '" + t.getEmail() + "' , '" + t.getAddress() + "' , '" + t.getLastName() + "' , '" + t.getDayofBirth() + "' , '" + t.getRegion() + "')";
             st.executeUpdate(sql);
 
             System.out.println("Ban da thuc thi");
@@ -78,6 +79,33 @@ public class UserDAO implements DAOInterface<User> {
         return result;
     }
 
+    public ArrayList<User> getFriends() {
+        ArrayList<User> result = new ArrayList<User>();
+        int userID = Session.getUserID();
+
+        try {
+            Connection connection = DBConnection.getConnection();
+            Statement st = connection.createStatement();
+            String sql = "SELECT userID, firstname, lastname from users where userID in " + "SELECT friendID FROM friendships where userID = " + userID;
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                String id = rs.getString("userId");
+                String username = rs.getString("username");
+
+                User user = new User(username);
+
+                result.add(user);
+
+            }
+            DBConnection.closeConnection(connection);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     @Override
     public User selectById(User t) {
         return null;
@@ -87,7 +115,7 @@ public class UserDAO implements DAOInterface<User> {
     public ArrayList<User> selecByCondition(String condition) {
         return null;
     }
-    
+
     public boolean isUsernameExists(String userName) {
         Connection connection = DBConnection.getConnection();
         String query = "SELECT COUNT(*) FROM Users WHERE username = ?";
@@ -104,6 +132,5 @@ public class UserDAO implements DAOInterface<User> {
         }
         return false;
     }
-    
 
 }

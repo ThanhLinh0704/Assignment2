@@ -15,11 +15,7 @@ public class TestGraph {
         GraphOfConnectionData graphOfConnectionData = new GraphOfConnectionData();
         
         
-//        for(UserVertex user: graphOfConnectionData.graph.getVertices()){
-//            System.out.println(user.id);
-//        }
-//        
-//        graphOfConnectionData.graph.display();
+
     }
     
 }

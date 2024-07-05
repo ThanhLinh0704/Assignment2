@@ -10,8 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+
 
 /**
  *
@@ -23,12 +22,21 @@ public class GraphOfConnectionData {
 
     private String[] regions = {"Bac", "Trung", "Nam"};
 
+
+
+
     public GraphOfConnectionData() {
+        
         this.loadUser();
         this.loadUserConnection();
+        
     }
 
-    public final void loadUser() {
+
+
+
+    public void loadUser() {
+
         try {
             Connection c = DBConnection.getConnection();
             Statement st = c.createStatement();
@@ -46,8 +54,9 @@ public class GraphOfConnectionData {
         }
     }
 
-    public final void loadUserConnection() {
-        HashMap<Integer, Integer> friendships = new HashMap();
+
+    public void loadUserConnection() {
+
         int[][] friendshipsArray = new int[20][20];
         
         try {
@@ -59,12 +68,13 @@ public class GraphOfConnectionData {
                 int userID = rs1.getInt("userID");
                 int friendID = rs1.getInt("friendID");
 
+                System.out.println(userID + " " + friendID);
                 
                 friendshipsArray[userID][friendID] = 1;
 
             }
 
-            
+            System.out.println("oke1");
 
             for (int i = 0; i < friendshipsArray.length; i++) {
                 for (int j = 0; j < friendshipsArray[i].length; j++) {
@@ -100,10 +110,18 @@ public class GraphOfConnectionData {
                         int weight = this.getWeight(region1, region2);
                         
                         this.graph.addEdge(userID, friendID, weight);
+                        
+                        
+                        
                     }
                 }
                 
+
+                
+
             }
+
+            
 
             DBConnection.closeConnection(c);
         } catch (Exception e) {
@@ -116,5 +134,14 @@ public class GraphOfConnectionData {
         int index2 = Arrays.asList(regions).indexOf(g2);
         return Math.abs(index1 - index2);
     }
+
+
+    public static void main(String[] args) {
+        GraphOfConnectionData gr = new GraphOfConnectionData();
+
+        gr.graph.display();
+
+    }
+
 
 }
