@@ -33,9 +33,69 @@ public class Item_AddPerson extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialogAddFr = new javax.swing.JDialog();
+        imageAvatar2 = new components.ImageAvatar();
+        lb1 = new javax.swing.JLabel();
+        jToggleButton2 = new javax.swing.JToggleButton();
         imageAvatar1 = new components.ImageAvatar();
         lb = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
+
+        imageAvatar2.setAlignmentX(1.0F);
+        imageAvatar2.setAlignmentY(1.0F);
+        imageAvatar2.setBorderSize(2);
+        imageAvatar2.setImage(new javax.swing.ImageIcon(getClass().getResource("/Icon/avt.png"))); // NOI18N
+        imageAvatar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imageAvatar2MouseClicked(evt);
+            }
+        });
+
+        lb1.setBackground(new java.awt.Color(255, 255, 255));
+        lb1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lb1.setText("Name");
+        lb1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb1MouseClicked(evt);
+            }
+        });
+
+        jToggleButton2.setText("Ok");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialogAddFrLayout = new javax.swing.GroupLayout(jDialogAddFr.getContentPane());
+        jDialogAddFr.getContentPane().setLayout(jDialogAddFrLayout);
+        jDialogAddFrLayout.setHorizontalGroup(
+            jDialogAddFrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogAddFrLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jDialogAddFrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialogAddFrLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(lb1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(160, 160, 160))
+                    .addGroup(jDialogAddFrLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jDialogAddFrLayout.setVerticalGroup(
+            jDialogAddFrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogAddFrLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jDialogAddFrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jDialogAddFrLayout.createSequentialGroup()
+                        .addComponent(lb1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jToggleButton2)))
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
 
         setBackground(new java.awt.Color(204, 204, 204));
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -119,12 +179,35 @@ public class Item_AddPerson extends javax.swing.JPanel {
         addfriend.insertFriendShip(id);
         GraphOfConnectionData graphOfConnectionData = new GraphOfConnectionData();
         jToggleButton1.setText("Added");
+        
+        jDialogAddFr.setTitle("Add friend successfull!");
+        jDialogAddFr.setSize(300, 180);
+        jDialogAddFr.setVisible(true);
+        jDialogAddFr.setLocationRelativeTo(null);
+        
 
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
+    private void imageAvatar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageAvatar2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imageAvatar2MouseClicked
+
+    private void lb1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lb1MouseClicked
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        // TODO add your handling code here:
+        jDialogAddFr.dispose();
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private components.ImageAvatar imageAvatar1;
+    private components.ImageAvatar imageAvatar2;
+    private javax.swing.JDialog jDialogAddFr;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JLabel lb;
+    private javax.swing.JLabel lb1;
     // End of variables declaration//GEN-END:variables
 }
