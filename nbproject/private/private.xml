@@ -3,13 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/src/components/Item_AddPerson.java</file>
-            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/src/dao/UserDAO.java</file>
             <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/src/page/LoginAndSignUp.java</file>
-            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/src/dao/GraphOfConnectionData.java</file>
-            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/src/GraphBase/Graph.java</file>
-            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/src/GraphBase/UserVertex.java</file>
-            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/src/page/Homepage/Search.java</file>
+            <file>file:/H:/SE_1885/Semester-3/CSD201/Assignment2/src/page/Login.java</file>
         </group>
     </open-files>
 </project-private>
