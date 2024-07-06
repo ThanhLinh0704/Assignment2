@@ -32,7 +32,7 @@ public class Home extends javax.swing.JLayeredPane {
 
         this.add(new Menu_Left());
         this.add(chat);
-        this.add(new Menu_Right());
+        this.add(new Menu_Right(), "width 300px!, grow");
     }
 
 
