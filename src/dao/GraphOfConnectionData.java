@@ -129,7 +129,7 @@ public class GraphOfConnectionData {
         }
     }
 
-    private int getWeight(String g1, String g2) {
+    public int getWeight(String g1, String g2) {
         int index1 = Arrays.asList(regions).indexOf(g1);
         int index2 = Arrays.asList(regions).indexOf(g2);
         return Math.abs(index1 - index2);

@@ -50,7 +50,9 @@ public class User {
     }
 
     public User() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public User(int userId, String username, String firstName, String lastName, String region) {
     }
 
     public int getIduser() {
