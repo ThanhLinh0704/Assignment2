@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package components;
+import com.mysql.cj.log.NullLogger;
 import dao.UserDAO;
 import page.Homepage.Search;
 /**
@@ -31,11 +32,71 @@ public class Item_AddPerson extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialogAddFr = new javax.swing.JDialog();
+        imageAvatar2 = new components.ImageAvatar();
+        lb1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         imageAvatar1 = new components.ImageAvatar();
         lb = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
 
-        setBackground(new java.awt.Color(204, 204, 204));
+        jDialogAddFr.setPreferredSize(new java.awt.Dimension(300, 140));
+
+        imageAvatar2.setAlignmentX(1.0F);
+        imageAvatar2.setAlignmentY(1.0F);
+        imageAvatar2.setBorderSize(2);
+        imageAvatar2.setImage(new javax.swing.ImageIcon(getClass().getResource("/Icon/avt.png"))); // NOI18N
+        imageAvatar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imageAvatar2MouseClicked(evt);
+            }
+        });
+
+        lb1.setBackground(new java.awt.Color(255, 255, 255));
+        lb1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lb1.setText("Name");
+        lb1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb1MouseClicked(evt);
+            }
+        });
+
+        jButton1.setText("Ok");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialogAddFrLayout = new javax.swing.GroupLayout(jDialogAddFr.getContentPane());
+        jDialogAddFr.getContentPane().setLayout(jDialogAddFrLayout);
+        jDialogAddFrLayout.setHorizontalGroup(
+            jDialogAddFrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogAddFrLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jDialogAddFrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lb1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogAddFrLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(13, 13, 13)))
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+        jDialogAddFrLayout.setVerticalGroup(
+            jDialogAddFrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogAddFrLayout.createSequentialGroup()
+                .addGap(18, 37, Short.MAX_VALUE)
+                .addGroup(jDialogAddFrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jDialogAddFrLayout.createSequentialGroup()
+                        .addComponent(lb1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)))
+                .addGap(33, 33, 33))
+        );
+
+        setBackground(new java.awt.Color(102, 102, 102));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -75,52 +136,78 @@ public class Item_AddPerson extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lb, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lb, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jToggleButton1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lb)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToggleButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton1)
-                    .addComponent(lb))
-                .addGap(16, 16, 16))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void lbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbMouseClicked
-        // TODO add your handling code here:
-        formMouseClicked(evt);
-    }//GEN-LAST:event_lbMouseClicked
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
         System.out.println(this.id);
     }//GEN-LAST:event_formMouseClicked
 
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        jDialogAddFr.setTitle("Add friend successfull!");
+        jDialogAddFr.setSize(300, 140);
+        jDialogAddFr.setVisible(true);
+        jDialogAddFr.setLocationRelativeTo(null);
+        
+//        UserDAO addfriend = new UserDAO();
+//        addfriend.insertFriendShip(addfriend.selectByIdFriend(id));
+        
+        
+        
+        //        Search searchList = new Search();
+        //        searchList.setVisible(true);
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void lbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbMouseClicked
+        // TODO add your handling code here:
+        formMouseClicked(evt);
+    }//GEN-LAST:event_lbMouseClicked
+
     private void imageAvatar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageAvatar1MouseClicked
         // TODO add your handling code here:
         formMouseClicked(evt);
     }//GEN-LAST:event_imageAvatar1MouseClicked
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void imageAvatar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageAvatar2MouseClicked
         // TODO add your handling code here:
-        UserDAO addfriend = new UserDAO();
-        addfriend.insertFriendShip(addfriend.selectByIdFriend(id));
-//        Search searchList = new Search();
-//        searchList.setVisible(true);
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_imageAvatar2MouseClicked
+
+    private void lb1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lb1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        jDialogAddFr.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private components.ImageAvatar imageAvatar1;
+    private components.ImageAvatar imageAvatar2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JDialog jDialogAddFr;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lb;
+    private javax.swing.JLabel lb1;
     // End of variables declaration//GEN-END:variables
 }

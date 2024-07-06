@@ -60,11 +60,8 @@ public class Menu_Left extends javax.swing.JPanel {
         listPerson = new javax.swing.JLayeredPane();
 
         setBackground(new java.awt.Color(0, 0, 0));
-        setForeground(new java.awt.Color(0, 0, 0));
         setMaximumSize(new java.awt.Dimension(236, 694));
         setMinimumSize(new java.awt.Dimension(236, 694));
-
-        jScrollPane1.setForeground(new java.awt.Color(0, 0, 0));
 
         listPerson.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -89,7 +86,7 @@ public class Menu_Left extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

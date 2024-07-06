@@ -101,28 +101,16 @@ public class GraphOfConnectionData {
                         ResultSet rs3 = st.executeQuery(sqlGetRegionOfFriend);
                         
                         while (rs3.next()) {
-                            region2 = rs3.getString("region");
-                            
-                        }
-                        
+                            region2 = rs3.getString("region");                           
+                        }                       
                         rs3.close();
 
                         int weight = this.getWeight(region1, region2);
                         
-                        this.graph.addEdge(userID, friendID, weight);
-                        
-                        
-                        
+                        this.graph.addEdge(userID, friendID, weight);                       
                     }
                 }
-                
-
-                
-
             }
-
-            
-
             DBConnection.closeConnection(c);
         } catch (Exception e) {
             e.printStackTrace();
