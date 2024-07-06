@@ -4,9 +4,17 @@
  */
 package page.Homepage;
 
+import GraphBase.Graph;
+import GraphBase.UserVertex;
 import components.Item_AddPerson;
+import components.Item_Person;
+import dao.GraphOfConnectionData;
 import dao.UserDAO;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import model.Session;
 import model.User;
 import net.miginfocom.swing.MigLayout;
 
@@ -28,15 +36,44 @@ public class Search extends javax.swing.JPanel {
         listPerson.setLayout(new MigLayout());
         showPeople();
     }
-    
+
     UserDAO userDAO = new UserDAO();
-    
+
     private void showPeople() {
-    List<User> users = userDAO.selectAll(); 
-    for (int i = 0; i < users.size(); i++) {
-        listPerson.add(new Item_AddPerson(users.get(i).getUseName(), users.get(i).getIduser()), "wrap");
+        int userId = Session.getUserID();
+        GraphOfConnectionData graphOfConnectionData = new GraphOfConnectionData();
+        String sessionUserRegion = userDAO.getUserRegion(userId, graphOfConnectionData);
+
+        List<Item_AddPerson> listPerson = new ArrayList<>();
+
+        for (UserVertex userVertex : graphOfConnectionData.graph.getVertices()) {
+            if (userVertex.id != userId) {
+                if (!graphOfConnectionData.graph.checkConnection(graphOfConnectionData.graph.getUser(userId), userVertex)) {
+                    listPerson.add(new Item_AddPerson(userVertex.firstName + " " + userVertex.lastName, userVertex.id));
+                }
+            }
+        }
+
+        listPerson.sort(new Comparator<Item_AddPerson>() {
+            @Override
+            public int compare(Item_AddPerson o1, Item_AddPerson o2) {
+                String region1 = userDAO.getUserRegion(o1.id, graphOfConnectionData);
+                String region2 = userDAO.getUserRegion(o2.id, graphOfConnectionData);
+                int weight1 = graphOfConnectionData.getWeight(sessionUserRegion, region1);
+                int weight2 = graphOfConnectionData.getWeight(sessionUserRegion, region2);
+                return Integer.compare(weight1, weight2);
+            }
+        });
+
+        for (Item_AddPerson person : listPerson) {
+            addPersonToUI(person);
+        }
     }
-}
+    private void addPersonToUI(Item_AddPerson person) {
+        
+        listPerson.add(person, "wrap");
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,7 +110,7 @@ public class Search extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,7 +120,7 @@ public class Search extends javax.swing.JPanel {
 
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

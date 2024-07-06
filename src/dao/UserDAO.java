@@ -39,27 +39,23 @@ public class UserDAO implements DAOInterface<User> {
         return 0;
 
     }
-    
-    public int insertFriendShip(User t) {
 
+    public void insertFriendShip(int friendID) {
         try {
             Connection connection = DBConnection.getConnection();
-            Statement st = connection.createStatement();
+            String sql = "INSERT INTO friendships (userID, friendID) VALUES (?, ?)";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, Session.getUserID()); // ID của người dùng hiện tại
+            stmt.setInt(2,friendID);    // ID của người bạn
+            System.out.println(Session.getUserID() + " " + friendID );
+            stmt.execute();
 
-            String sql = "INSERT INTO friendships (userID, friendID)"
-                    + " VALUES ('" + Session.getUserID() + "' , '" + t.getIduser()+ "')";
-            st.executeUpdate(sql);
 
-            System.out.println("Ban da thuc thi");
             DBConnection.closeConnection(connection);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return 0;
-
     }
-    
-    
 
     @Override
     public int update(User t) {
@@ -131,18 +127,21 @@ public class UserDAO implements DAOInterface<User> {
         User result = null;
         try {
             Connection connection = DBConnection.getConnection();
-            Statement st = connection.createStatement();
-            String sql = "SELECT * FROM users where userID = '" + t + "'";
-            ResultSet rs = st.executeQuery(sql);
+            String sql = "SELECT * FROM users WHERE userID = ?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, t);
+            ResultSet rs = stmt.executeQuery();
 
-            while (rs.next()) {
+            if (rs.next()) {
                 int userId = rs.getInt("userID");
                 String username = rs.getString("username");
                 result = new User(userId, username);
             }
-            DBConnection.closeConnection(connection);
 
-        } catch (Exception e) {
+            rs.close();
+            stmt.close();
+            DBConnection.closeConnection(connection);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return result;
@@ -175,4 +174,21 @@ public class UserDAO implements DAOInterface<User> {
         return null;
     }
 
+    public String getUserRegion(int userId, GraphOfConnectionData graphOfConnectionData) {
+        String region = "";
+        try {
+            Connection c = DBConnection.getConnection();
+            Statement st = c.createStatement();
+            String sql = "SELECT region FROM users WHERE userID = " + userId;
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                region = rs.getString("region");
+            }
+            rs.close();
+            DBConnection.closeConnection(c);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return region;
+    }
 }

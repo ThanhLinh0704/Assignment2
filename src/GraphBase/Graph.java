@@ -65,6 +65,9 @@ public class Graph {
     }
 
     public boolean checkConnection(UserVertex user1, UserVertex user2) {
+        System.out.println("odk2");
+        System.out.println(user1.id);
+        System.out.println(user2.id);
         UserVertex user = this.getUser(user1.id);
         for (Map.Entry<UserVertex, Integer> entry : user.adjList.entrySet()) {
             if (user2.id == entry.getKey().id) {

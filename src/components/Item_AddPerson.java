@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package components;
+import dao.GraphOfConnectionData;
 import dao.UserDAO;
+import model.User;
 import page.Homepage.Search;
 /**
  *
@@ -14,7 +16,7 @@ public class Item_AddPerson extends javax.swing.JPanel {
     /**
      * Creates new form Item_Person
      */
-    int id;
+    public int id;
 
     public Item_AddPerson(String name, int id) {
         this.id = id;
@@ -75,10 +77,10 @@ public class Item_AddPerson extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lb, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(17, 17, 17)
                 .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,11 +113,12 @@ public class Item_AddPerson extends javax.swing.JPanel {
     }//GEN-LAST:event_imageAvatar1MouseClicked
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
+
+        System.out.println(id);
         UserDAO addfriend = new UserDAO();
-        addfriend.insertFriendShip(addfriend.selectByIdFriend(id));
-//        Search searchList = new Search();
-//        searchList.setVisible(true);
+        addfriend.insertFriendShip(id);
+        GraphOfConnectionData graphOfConnectionData = new GraphOfConnectionData();
+
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
