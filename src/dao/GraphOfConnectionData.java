@@ -62,61 +62,14 @@ public class GraphOfConnectionData {
         try {
             Connection c = DBConnection.getConnection();
             Statement st = c.createStatement();
-            String sql1 = "select userID, friendID from friendships";
+            String sql1 = "select userID, friendID, level from friendships";
             ResultSet rs1 = st.executeQuery(sql1);
             while (rs1.next()) {
                 int userID = rs1.getInt("userID");
                 int friendID = rs1.getInt("friendID");
-
-                System.out.println(userID + " " + friendID);
-                
-                friendshipsArray[userID][friendID] = 1;
-
-            }
-
-            System.out.println("oke1");
-
-            for (int i = 0; i < friendshipsArray.length; i++) {
-                for (int j = 0; j < friendshipsArray[i].length; j++) {
-                    if (friendshipsArray[i][j] == 1) {
-                        int userID = i;
-                        int friendID = j;
-                        
-                        String sqlGetRegionOfUser = "select region from users where userID = " + userID;
-                        String sqlGetRegionOfFriend = "select region from users where userID = " + friendID;
-                        
-                        
-                        ResultSet rs2 = st.executeQuery(sqlGetRegionOfUser);
-                        
-                        
-                        String region1 = "";
-                        String region2 = "";
-                        while (rs2.next()) {
-                            region1 = rs2.getString("region");
-                            
-                        }
-                        
-                        rs2.close();
-                        
-                        ResultSet rs3 = st.executeQuery(sqlGetRegionOfFriend);
-                        
-                        while (rs3.next()) {
-                            region2 = rs3.getString("region");
-                            
-                        }
-                        
-                        rs3.close();
-
-                        int weight = this.getWeight(region1, region2);
-                        
-                        this.graph.addEdge(userID, friendID, weight);
-                        
-                        
-                        
-                    }
-                }
-                
-
+                int level = rs1.getInt("level");
+                System.out.println(userID + " " + friendID + " " + level);
+                this.graph.addEdge(userID, friendID, level);
                 
 
             }
